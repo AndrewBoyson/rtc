@@ -1,0 +1,100 @@
+<h1>PIC</h1>
+<form action='/' method='post'>
+	<input type="hidden" name="pic_values">
+	<input type='submit' value='Submit'><br/>
+	<div class="col8">Build info</div>~RtcBuildInfo~<br/>
+	<div class="col8">Model info</div>~RtcModelInfo~<br/>
+	<div class="col8">Maker info</div>~RtcMakerInfo~<br/>
+	<div class="col8">Comment</div><input type="textbox"  name="RtcComment" size="80%" value="~RtcComment~"><br/>
+	<div class="col8">Error</div>~RtcError^%08X~ <input type="checkbox" name="RtcFlag" value="on" ~RtcFlag^checked~> Error flagged (submitting this unchecked resets the error; checked does nothing)<br/>
+	<div class="col8">LED</div><input type="checkbox" name="RtcLED" value="on" ~RtcLED^checked~><br/>
+	<div class="col8">Battery</div>~RtcVoltage^%1.3f V~<br/>
+	<div class="col8">Poll period</div>~RtcPollPeriod^%'d ns~<br/>
+</form>
+<h1>Clock ~RtcGetNowF^%Y-%m-%d %H:%M:%S UTC~</h1>
+<form action='/' method='post'>
+	<input type="hidden" name="clock_values">
+	<input type='submit' value='Submit'><br/>
+	<div class="col8">Epoch</div><input type="textbox" name="RtcClockEpoch" size="5em" value="~RtcClockEpoch^%d~" ><br/>
+	<div class="col8">Count</div>~RtcClockNowAbsNs^%'llu ns~ <input type="checkbox" name="RtcClockIsSet" value="on" ~RtcClockIsSet^checked~> Clock is set (submitting this unchecked resets the clock; checked does nothing)<br/>
+</form>
+<h1>Sample ~RtcGetSampleF^%Y-%m-%d %H:%M:%S UTC~</h1>
+<form action='/' method='post'>
+	<input type="hidden" name="sample_values">
+	<input type='submit' value='Submit'><br/>
+	<div id='section' style='float:left; width:100%;'>
+		<div id='box' style='float:left; width:25em;'>
+			<div class="col12">Sample rate difference</div>~RtcRateLoopInputDiffPpb^%'lld~ ns<br/>
+			<div class="col12">Sample period</div>~RtcRateLoopInputPeriodNs^%'llu~ ns<br/>
+			<div class="col12">Rate loop gain Kr</div><input type="textbox" name="RtcRateLoopParamKr" size="12em" value="~RtcRateLoopParamKr^%d~"><br/>
+			<div class="col12">Rate loop limit</div><input type="textbox" name="RtcRateLoopParamMax" size="12em" value="~RtcRateLoopParamMax^%'d~ ppb"><br/>
+			<div class="col12">Rate loop output</div>~RtcRateLoopOutputPpb^%'d~ ppb
+		</div>
+		<div id='box' style='float:left; width:25em;'>
+			<div class="col12">Sample time difference</div>~RtcTimeLoopInputAbsDiffNs^%'lld~ ns<br/>
+			<div class="col12">Time loop gain Ka</div><input type="textbox" name="RtcTimeLoopParamKa" size="12em" value="~RtcTimeLoopParamKa^%d~"><br/>
+			<div class="col12">Time loop output limit</div><input type="textbox" name="RtcTimeLoopParamMax" size="12em" value="~RtcTimeLoopParamMax^%'d~ ns"><br/>
+			<div class="col12">Time loop spread period</div><input type="textbox" name="RtcTimeLoopParamSpreadSecs" size="12em" value="~RtcTimeLoopParamSpreadSecs^%'d~ seconds"><br/>
+			<div class="col12">Time loop output to slew</div>~RtcTimeLoopOutputAmountNs^%'d~ ns<br/>
+			<div class="col12">Time loop output slew rate</div>~RtcTimeLoopOutputRateNsPerS^%'d~ ns/s
+		</div>
+	</div>
+	<input type="checkbox" name="RtcSampleControlOn" value="on" ~RtcSampleControlOn^checked~> Sample control on<br/>
+</form>
+<h1>Tick</h1>
+<form action='/' method='post'>
+	<input type="hidden" name="tick_values">
+	<input type='submit' value='Submit'>
+	<div id='section' style='float:left; width:100%;'>
+		<div id='box' style='float:left; width:25em;'>
+			<div class="col12">Regulator To (25±5) </div><input type="textbox" name="RtcRegulatorParamTo" size="12em" value="~RtcRegulatorParamTo^%1.1f~ °C"><br/>
+			<div class="col12">Regulator Ko (34±6) </div><input type="textbox" name="RtcRegulatorParamKo" size="12em" value="~RtcRegulatorParamKo^%1.1f~ ppb/°C²"><br/>
+			<div class="col12">Aging per day (5)   </div><input type="textbox" name="RtcAgingParamAo"     size="12em" value="~RtcAgingParamAo^%d~ ppb/day"><br/>
+			<div class="col12">Aging Fo (auto)     </div><input type="textbox" name="RtcAgingParamFo"     size="12em" value="~RtcAgingParamFo^%'d~ ppb"></br></br>
+		</div>
+		<div id='box' style='float:left; width:25em;'>
+			<div class="col12">Slew (auto)         </div><input type="textbox" name="RtcSlewAmountNs"     size="12em" value="~RtcSlewAmountNs^%'d~ ns"><br/>
+			<div class="col12">Slew rate (auto)    </div><input type="textbox" name="RtcSlewRateNsPerS"   size="12em" value="~RtcSlewRateNsPerS^%'d~ ns"/s>
+		</div>
+	</div>
+</form>
+<p>Aging Fo being positive means that number of ns are added per second which will make the clock faster</p>
+<p>Aging per day being positive means Fo is increased by that amount per day and so will compensate for a crystal that goes slower over time</p>
+<h1>Fan</h1>
+<div id='section' style='float:left; width:100%;'>
+	<div id='box' style='float:left; width:25em;'>
+		<form action='/' method='post'>
+			<input type="hidden" name="loop_values">
+			<input type='submit' value='Submit'><br/>
+			<div class="col8">Step Target</div><input type="checkbox" name="FanDoStepTarget" value="on" ~FanDoStepTarget^checked~><br/>
+			<div class="col8">Centre</div><input type="textbox" name="FanCentre" size="5em" value="~FanCentre^%0.1f~ °C" ><br/>
+			<div class="col8">Offset</div><input type="textbox" name="FanOffset" size="5em" value="~FanOffset^%0.1f~ °C" ><br/>
+			<div class="col8">Step</div><input type="textbox" name="FanStep" size="5em" value="~FanStep^%0.1f~ °C" ><br/>
+			<div class="col8">Target</div><input type="textbox" name="FanTarget" size="5em" value="~FanTarget^%0.1f~ °C" ><br/>
+			<div class="col8">Actual</div>~RtcTemperature^%1.1f °C~<br/>
+			<div class="col8">Error</div>~FanError^%.2f~ °C<br/>
+			<div class="col8">Above ambient</div>~FanCooling^%.3f~ °C<br/>
+			<div class="col8">Auto</div><input type="checkbox" name="FanAuto" value="on" ~FanAuto^checked~><br/>
+			<div class="col8">Fan stall status</div>~FanStall^warning/ok~<br/>
+		</form>
+	</div>
+	<div id='box' style='float:left; width:25em;'>
+		<form action='/' method='post'>
+			<input type="hidden" name="fan_values">
+			<input type='submit' value='Submit'><br/>
+			<div class="col8">Output (0-1023)</div><input type="textbox" name="FanOutput" size="5em" value="~FanOutput^%d~" ><br/>
+			<div class="col8">Density (0-1023)</div>~FanDensity^%d~<br/>
+			<div class="col8">Pulse</div>~FanPulse^%d~ ms<br/>
+			<div class="col8">On time</div>~FanOnTime^%d~ ms<br/>
+			<div class="col8">Off time</div>~FanOffTime^%d~ ms<br/>
+		</form>
+	</div>
+</div>
+<h1>Samples</h1>
+<form action='/' method='post'>
+	<input type='hidden' name='upload_samples'>
+	<input type='submit' value='Upload samples'>
+</form>
+<h1>System Clock</h1>
+<div class="col8">Offset</div> ~SysClkOffsetSeconds^%1.3f seconds~</br>
+<div class="col8">Frequency</div> ~SysClkFrequencyPpm^%1.1f ppm~

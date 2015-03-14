@@ -1,0 +1,6 @@
+~edit^/etc/rtc^RTC Configuration~
+~edit^/var/log/rtc^RTC Log~
+~edit^/etc/fstab^fstab~
+~edit^/etc/rc.local^rc.local~
+~edit^/etc/crontab^crontab~
+~edit^/etc/modprobe.d/raspi-blacklist.conf^raspi-blacklist~

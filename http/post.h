@@ -1,0 +1,1 @@
+extern int Post(char * pStart, int length);

@@ -1,0 +1,43 @@
+#=========================
+# RTC configuration file |
+#=========================
+
+#names and values are trimmed. A '#' starts a comment.
+
+sample server            = ntp.blueyonder.co.uk     #Local ISP is a good choice
+sample interval hours    = 8                        #Under an hour network timing predominates; more than 4 hours temperature predominates
+sample count             = 10                       #Allows the vagaries in network time to be reduced
+sample inter delay secs  = 4                        #NTP etiquette suggests you shouldn't exceed a request every 4 seconds
+sample log file name     = samples %Y%m             #Google 'man strftime' for how this is parsed
+sample nas path          = /mnt/data/
+
+#ntp client log file name = ntpclients               #Comment this line out to not log ntp client requests
+
+log level character = w  #Can be : i, w, e or c (information, warning, error or critical). 
+
+leap second online file UTI     = utcnist.colorado.edu/pub/leap-seconds.list
+leap second cache file name     = leapseconds
+leap second new file check days = 7
+
+system clock frequency loop gain = 0.2
+
+fan output period secs  = 20
+fan pulse period ms     = 500
+fan minimum run speed   = 350
+fan minimum start speed = 800
+
+fan curve point =    0, 14.3 #checked
+fan curve point =  100, 10.1 #checked
+fan curve point =  200,  7.8 #checked
+fan curve point =  300,  6.2 #checked
+fan curve point =  400,  5.1 #checked
+fan curve point =  500,  4.1 #checked
+fan curve point =  600,  3.4 #checked
+fan curve point =  800,  2.2 #checked
+fan curve point = 1000,  1.3 #checked
+
+fan proportional gain   =   1.5   #  2.0 Kp = 0.6 * Ku = 0.6 * 4
+fan integral time       = 120.0   #120.0 Ti = Tu / 2 = (4 * 60) / 2 = 120
+fan derivative time     =   0.0   # 30.0 Td = Tu / 8 = (4 * 60) / 8 =  30
+
+#fan log file name       = fanvalues               #Comment this line out to not log fan values

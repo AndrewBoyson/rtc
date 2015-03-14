@@ -1,0 +1,16 @@
+extern int SpiSend0(char id,                 int delay_us              );
+extern int SpiSend1(char id,                 int delay_us, void * pVoid);
+extern int SpiRead1(char id,                 int delay_us, void * pVoid);
+extern int SpiSend2(char id,                 int delay_us, void * pVoid);
+extern int SpiRead2(char id,                 int delay_us, void * pVoid);
+extern int SpiSend4(char id,                 int delay_us, void * pVoid);
+extern int SpiRead4(char id,                 int delay_us, void * pVoid);
+extern int SpiSend8(char id,                 int delay_us, void * pVoid);
+extern int SpiRead8(char id,                 int delay_us, void * pVoid);
+extern int SpiSendS(char id,                 int delay_us, char * pChar);
+extern int SpiReadS(char id, int buffersize, int delay_us, char * pChar);
+extern int SpiSendB(char id, int buffersize, int delay_us, void * pVoid);
+extern int SpiReadE(char id, int buffersize, int delay_us, void * pVoid);
+extern int SpiReadB(char id, int buffersize, int delay_us, void * pVoid);
+extern int SpiInit ();
+extern int SpiClose();
